@@ -30,7 +30,7 @@ class Typography extends Component {
   render() {
     return (
       <Row>
-        <Col xs={6}>
+        <Col xs={6} sm={8}>
           <p className="text-center">
             <Card>
               <CardHeader style={{ backgroundColor: "#f7b100" }}>

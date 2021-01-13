@@ -75,7 +75,8 @@ const Admission = React.lazy(() => import("./views/Pages/users/admission"));
 const routes = [
   { path: "/", exact: true, name: "Home" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
-  { path: "/admission", name: "Admission", component: AdmissionForm },
+  { path: "/admission", name: "Admission", component: Admission },
+  { path: "/submit", name: "Submit", component: AdmissionForm },
   { path: "/theme", name: "Theme", component: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", component: Colors },
   { path: "/theme/typography", name: "Typography", component: Typography },

@@ -6,7 +6,7 @@ import usersData from "./UsersData";
 
 function UserRow(props) {
   const user = props.user;
-  const userLink = `/users/${user.id}`;
+  const userLink = `/users/0`;
 
   const getBadge = (status) => {
     return status === "Admis"
@@ -28,8 +28,7 @@ function UserRow(props) {
       <td>
         <Link to={userLink}>{user.name}</Link>
       </td>
-      <td>{user.registered}</td>
-      <td>{user.role}</td>
+
       <td>
         <Link to={userLink}>
           <Badge color={getBadge(user.status)}>{user.status}</Badge>
@@ -57,10 +56,8 @@ class Users extends Component {
                   <thead>
                     <tr>
                       <th scope="col">id</th>
-                      <th scope="col">name</th>
-                      <th scope="col">registered</th>
-                      <th scope="col">role</th>
-                      <th scope="col">status</th>
+                      <th scope="col">Nom complet</th>
+                      <th scope="col">statut</th>
                     </tr>
                   </thead>
                   <tbody>
