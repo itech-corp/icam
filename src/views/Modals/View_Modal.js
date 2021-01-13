@@ -37,7 +37,7 @@ const ModalExample = (props) => {
               alt="Card image cap"
             />
             <CardBody>
-              <CardTitle tag="h5">Bulletins</CardTitle>
+              <CardTitle tag="h5">Bulletin</CardTitle>
             </CardBody>
           </Card>
         </ModalBody>
@@ -45,11 +45,14 @@ const ModalExample = (props) => {
           <Button color="danger" onClick={toggle}>
             Fermer <i className="fa fa-times"></i>{" "}
           </Button>{" "}
-          <Link to="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg">
+          <a
+            href="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg"
+            download="bulletin"
+          >
             <Button color="warning" onClick={toggle}>
               Telecharger <i className="fa fa-download"></i>
             </Button>
-          </Link>
+          </a>
         </ModalFooter>
       </Modal>
     </div>

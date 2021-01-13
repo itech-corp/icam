@@ -307,7 +307,7 @@ class User extends Component {
                       <CardBody>
                         <CardTitle tag="h5">Carte d'identite</CardTitle>
 
-                        <ModalPerso buttonLabel="Voir plus" />
+                        <ModalCni buttonLabel="Voir plus" />
                       </CardBody>
                     </Card>
                   </Col>

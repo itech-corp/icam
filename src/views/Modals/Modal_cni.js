@@ -38,95 +38,26 @@ const ModalExample = (props) => {
         </ModalHeader>
         <ModalBody>
           <Row>
-            {" "}
-            <Col xs={4}>
+            <Col>
+              {" "}
               <Card>
                 <CardImg
                   top
                   width="100%"
-                  src="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg"
+                  src="https://www.dgsn.cm/wp-content/uploads/2020/01/SEJOUR-600x406.png"
                   alt="Card image cap"
                 />
-                <CardBody>
-                  <CardTitle tag="h5">Bulletins</CardTitle>
-
-                  <MyViewModal buttonLabel="Voir" className="none" />
-                </CardBody>
               </Card>
             </Col>
-            <Col xs={4}>
+            <Col>
+              {" "}
               <Card>
                 <CardImg
                   top
                   width="100%"
-                  src="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg"
+                  src="https://www.icilome.com/sharecontentahn/794643.jpg"
                   alt="Card image cap"
                 />
-                <CardBody>
-                  <CardTitle tag="h5">Carte d'identite</CardTitle>
-
-                  <MyViewModal buttonLabel="Voir" className="none" />
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs={4}>
-              <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  src="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg"
-                  alt="Card image cap"
-                />
-                <CardBody>
-                  <CardTitle tag="h5">Bulletins</CardTitle>
-
-                  <MyViewModal buttonLabel="Voir" className="none" />
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs={4}>
-              <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  src="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg"
-                  alt="Card image cap"
-                />
-                <CardBody>
-                  <CardTitle tag="h5">Bulletins</CardTitle>
-
-                  <MyViewModal buttonLabel="Voir" className="none" />
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs={4}>
-              <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  src="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg"
-                  alt="Card image cap"
-                />
-                <CardBody>
-                  <CardTitle tag="h5">Bulletins</CardTitle>
-
-                  <MyViewModal buttonLabel="Voir" className="none" />
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs={4}>
-              <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  src="https://i.pinimg.com/originals/29/65/2c/29652c0429abdbf16039ecd246988a28.jpg"
-                  alt="Card image cap"
-                />
-                <CardBody>
-                  <CardTitle tag="h5">Bulletins</CardTitle>
-
-                  <MyViewModal buttonLabel="Voir" className="none" />
-                </CardBody>
               </Card>
             </Col>
           </Row>
