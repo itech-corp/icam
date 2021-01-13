@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -22,7 +23,7 @@ class Register extends Component {
         <Container>
           <Row className="justify-content-center">
             <Col md="9" lg="7" xl="6">
-              <Card className="mx-4">
+              <Card className="mx-4 ">
                 <CardBody className="p-4">
                   <Form>
                     <h1>Creer votre compte etudiant</h1>
@@ -101,9 +102,14 @@ class Register extends Component {
                         autoComplete="new-password"
                       />
                     </InputGroup>
-                    <Button color="success" block>
-                      S'enregistrer
-                    </Button>
+                    <Link to="/admission">
+                      <Button
+                        style={{ backgroundColor: "#bcc0c4", color: "white" }}
+                        block
+                      >
+                        S'enregistrer
+                      </Button>
+                    </Link>
                   </Form>
                 </CardBody>
               </Card>

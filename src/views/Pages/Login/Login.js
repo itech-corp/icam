@@ -14,6 +14,7 @@ import {
   InputGroupText,
   Row,
 } from "reactstrap";
+import icam_logo from "../../../assets/img/icam.png";
 
 class Login extends Component {
   render() {
@@ -56,15 +57,18 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button
-                            style={{
-                              backgroundColor: "#bcc0c4",
-                              color: "white",
-                            }}
-                            className="px-4"
-                          >
-                            Connexion
-                          </Button>
+                          <Link to="/users">
+                            {" "}
+                            <Button
+                              style={{
+                                backgroundColor: "#bcc0c4",
+                                color: "white",
+                              }}
+                              className="px-4"
+                            >
+                              Connexion
+                            </Button>
+                          </Link>
                         </Col>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">
@@ -81,6 +85,9 @@ class Login extends Component {
                 >
                   <CardBody className="text-center">
                     <div>
+                      <div>
+                        <img style={{ width: "50%" }} src={icam_logo} />
+                      </div>
                       <h2>S'inscrire</h2>
                       <p>
                         Inscrivez-vous et commencer votre demande d'admission en

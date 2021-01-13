@@ -35,12 +35,11 @@ class DefaultHeader extends Component {
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
             <NavLink to="#" className="nav-link">
-              <i className="icon-location-pin"></i>
+              <i className="icon-power"></i>
             </NavLink>
           </NavItem>
-          <DefaultHeaderDropdown onLogout={this.props.onLogout} accnt />
         </Nav>
-        <AppAsideToggler className="d-md-down-none" />
+
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
       </React.Fragment>
     );

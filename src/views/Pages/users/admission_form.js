@@ -1313,6 +1313,14 @@ class Typography extends Component {
                       <Input type="file" id="file-input" name="file-input" />
                     </Col>
                   </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="file-input">Recu de paiment</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input type="file" id="file-input" name="file-input" />
+                    </Col>
+                  </FormGroup>
                 </Form>
               </CardBody>
               <CardFooter>
