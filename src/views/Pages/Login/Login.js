@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FirebaseContext } from "../../../components/Firebase";
 import {
@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 import icam_logo from "../../../assets/img/icam.png";
 import Dashboard from "../../Dashboard/Dashboard";
+import usersData from "../../Users/UsersData";
 
 const Login = (props) => {
   const data = {
@@ -25,40 +26,62 @@ const Login = (props) => {
     password: "",
   };
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loginData, setLoginDate] = useState(data);
   const [redirection, setRedirection] = useState(true);
   const [error, setError] = useState("");
   const firebase = useContext(FirebaseContext);
 
+  const [btn, setBtn] = useState(false);
+
+  useEffect(() => {
+    if (password.length > 5 && email !== "") {
+      setBtn(true);
+    } else if (btn) {
+      setBtn(false);
+    }
+  }, [password, email, btn]);
+
   const handleChange = (e) => {
     setLoginDate({ ...loginData, [e.target.id]: e.target.value });
   };
+
   const handleSubmit = (e) => {
     console.log("submited");
     e.preventDefault();
-    const { email, password } = loginData;
+
     firebase
       .loginUser(email, password)
       .then((user) => {
+        setEmail("");
+        setPassword("");
         console.log("success");
-        if (user.email === "admin-admission@ulc-icam.com") {
-          props.history.push("/Dashboard");
+        if (email === "admin-admission@ulc-icam.com") {
+          user
+            ? props.history.push("/dashboard")
+            : props.history.push("/login");
+        } else {
+          user
+            ? props.history.push("/admission")
+            : props.history.push("/login");
         }
         setLoginDate({ ...data });
       })
       .catch((error) => {
+        setEmail("");
+        setPassword("");
         setError(error);
         console.log(error);
       });
   };
   const isLogedIn = () => {
-    firebase.auth.onAuthStateChanged((user) => {
+    firebase.auth.onAuthStateChanged((user, email) => {
       setRedirection(false);
-      user ? props.history.push("/admission") : props.history.push("/login");
     });
   };
 
-  const { pseudo, email, password } = loginData;
+  //const { pseudo, email, password } = loginData;
 
   const errorMsg = error !== "" && <span>{error.message}</span>;
   if (redirection) {
@@ -74,9 +97,7 @@ const Login = (props) => {
                 <CardBody>
                   <Form onSubmit={handleSubmit}>
                     <h1>Connexion</h1>
-                    <p className="text-muted">
-                      Connecter vous a votre compte etudiant
-                    </p>
+                    <p className="text-muted">Connecter vous a votre compte</p>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -85,11 +106,11 @@ const Login = (props) => {
                       </InputGroupAddon>
                       <Input
                         type="text"
-                        placeholder="Nom d'utilisateur"
+                        placeholder="email"
                         autoComplete="username"
-                        id="email"
+                        onChange={(e) => setEmail(e.target.value)}
                         value={email}
-                        onChange={handleChange}
+                        required
                       />
                     </InputGroup>
                     <InputGroup className="mb-4">
@@ -102,22 +123,35 @@ const Login = (props) => {
                         type="password"
                         placeholder="Mot de passe"
                         autoComplete="current-password"
-                        id="password"
+                        onChange={(e) => setPassword(e.target.value)}
                         value={password}
-                        onChange={handleChange}
+                        required
                       />
                     </InputGroup>
                     <Row>
                       <Col xs="6">
-                        <Button
-                          style={{
-                            backgroundColor: "#bcc0c4",
-                            color: "white",
-                          }}
-                          className="px-4"
-                        >
-                          Connexion
-                        </Button>
+                        {btn ? (
+                          <Button
+                            style={{
+                              backgroundColor: "#f5ce42",
+                              color: "white",
+                            }}
+                            className="px-4"
+                          >
+                            Connexion
+                          </Button>
+                        ) : (
+                          <Button
+                            disabled
+                            style={{
+                              backgroundColor: "#bcc0c4",
+                              color: "white",
+                            }}
+                            className="px-4"
+                          >
+                            Connexion
+                          </Button>
+                        )}
                       </Col>
                       <Col xs="6" className="text-right">
                         <Button color="link" className="px-0">

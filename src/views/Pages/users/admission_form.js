@@ -79,7 +79,6 @@ const Admission = () => {
     autreInfo: "",
 
     status: "",
-    role: "user",
   };
   const [admissionData, setadmissionData] = useState(data);
   const [file, setFile] = useState("");

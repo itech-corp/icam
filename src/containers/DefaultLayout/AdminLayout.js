@@ -49,7 +49,7 @@ const AdminLayout = (props) => {
           <AppSidebarHeader />
           <AppSidebarForm />
           <Suspense>
-            <AppSidebarNav navConfig={navigation} {...props} />
+            <AppSidebarNav navConfig={userNavigation} {...props} />
           </Suspense>
           <AppSidebarFooter />
           <AppSidebarMinimizer />

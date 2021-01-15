@@ -44,7 +44,7 @@ const Register = (props) => {
         setIsLoading(false);
         console.log("success");
         setLoginDate({ ...data });
-        props.history.push("/");
+        props.history.push("/admission");
       })
       .catch((error) => {
         setError(error);
@@ -118,6 +118,11 @@ const Register = (props) => {
                     {spinner}
                   </div>
                 </Form>
+                <div className="linkContainer">
+                  <Link className="simpleLink" to="/login">
+                    Deja inscrit ? Connectez vous
+                  </Link>
+                </div>
               </CardBody>
             </Card>
           </Col>
