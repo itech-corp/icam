@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -13,112 +13,118 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row,
+  Spinner,
 } from "reactstrap";
 import icam_logo from "../../../assets/img/icam.png";
+import { FirebaseContext } from "../../../components/Firebase";
 
-class Register extends Component {
-  render() {
-    return (
-      <div className="app flex-row align-items-center">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md="9" lg="7" xl="6">
-              <Card className="mx-4 ">
-                <CardBody className="p-4">
-                  <Form>
-                    <h1>Creer votre compte etudiant</h1>
-                    <p className="text-muted text-center">
-                      <img src={icam_logo} />{" "}
-                    </p>
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-user"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="text"
-                        placeholder="Nom d'utilisateur"
-                        autoComplete="username"
-                      />
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-user"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="text"
-                        placeholder="Nom Complet"
-                        autoComplete="username"
-                      />
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-user"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input type="select" name="ccmonth" id="ccmonth">
-                        <option value="0">Niveau d'etude souhaiter</option>
-                        <option value="1">Niveau 1</option>
-                        <option value="2">Niveau 2</option>
-                        <option value="3">Niveau 3</option>
-                        <option value="4">Niveau 4</option>
-                      </Input>
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>@</InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="text"
-                        placeholder="Email"
-                        autoComplete="email"
-                      />
-                    </InputGroup>
-                    <InputGroup className="mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-lock"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="password"
-                        placeholder="Mot de passe"
-                        autoComplete="new-password"
-                      />
-                    </InputGroup>
-                    <InputGroup className="mb-4">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-lock"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        type="password"
-                        placeholder="confirmation du mot de passe"
-                        autoComplete="new-password"
-                      />
-                    </InputGroup>
-                    <Link to="/admission">
-                      <Button
-                        style={{ backgroundColor: "#bcc0c4", color: "white" }}
-                        block
-                      >
-                        S'enregistrer
-                      </Button>
-                    </Link>
-                  </Form>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
-}
+const Register = (props) => {
+  const data = {
+    email: "",
+    password: "",
+    confirmation: "",
+    role: "user",
+  };
+  const [loginData, setLoginDate] = useState(data);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const firebase = useContext(FirebaseContext);
+
+  const handleChange = (e) => {
+    setLoginDate({ ...loginData, [e.target.id]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    console.log("submited");
+    setIsLoading(true);
+    e.preventDefault();
+    const { email, password } = loginData;
+    firebase
+      .signupUser(email, password)
+      .then((user) => {
+        setIsLoading(false);
+        console.log("success");
+        setLoginDate({ ...data });
+        props.history.push("/");
+      })
+      .catch((error) => {
+        setError(error);
+        console.log(error);
+      });
+  };
+
+  const { email, password, confirmation } = loginData;
+
+  const spinner = isLoading ? (
+    <Spinner className="text-center" color="warning" />
+  ) : (
+    <Button style={{ backgroundColor: "#bcc0c4", color: "white" }} block>
+      S'enregistrer
+    </Button>
+  );
+  return (
+    <div className="app flex-row align-items-center">
+      <Container>
+        <Row className="justify-content-center">
+          <Col md="9" lg="7" xl="6">
+            <Card className="mx-4 ">
+              <CardBody className="p-4">
+                <Form onSubmit={handleSubmit}>
+                  <h1>Creer votre compte etudiant</h1>
+                  <p className="text-muted text-center">
+                    <img src={icam_logo} />{" "}
+                  </p>
+
+                  <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>@</InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      id="email"
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="Votre address email"
+                      autoComplete="email"
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="icon-lock"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      id="password"
+                      onChange={handleChange}
+                      type="password"
+                      placeholder="Mot de passe"
+                      autoComplete="new-password"
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-4">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="icon-lock"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      id="confirmation"
+                      onChange={handleChange}
+                      type="password"
+                      placeholder="confirmation du mot de passe"
+                      autoComplete="new-password"
+                    />
+                  </InputGroup>
+                  <div className="w-100 text-center align-content">
+                    {spinner}
+                  </div>
+                </Form>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
 
 export default Register;

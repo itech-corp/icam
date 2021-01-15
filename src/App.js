@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
+import AdminLayout from "./containers/DefaultLayout/AdminLayout";
 // import { renderRoutes } from 'react-router-config';
 import "./App.scss";
 
@@ -24,6 +25,12 @@ class App extends Component {
       <HashRouter>
         <React.Suspense fallback={loading()}>
           <Switch>
+            <Route
+              exact
+              path="/admin"
+              name="Admin"
+              render={(props) => <AdminLayout {...props} />}
+            />
             <Route
               exact
               path="/login"
@@ -54,6 +61,7 @@ class App extends Component {
               name="Page 500"
               render={(props) => <Page500 {...props} />}
             />
+
             <Route
               path="/"
               name="Home"

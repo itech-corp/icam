@@ -11,6 +11,7 @@ import {
 import DefaultHeaderDropdown from "./DefaultHeaderDropdown";
 import logo from "../../assets/img/brand/logo.svg";
 import sygnet from "../../assets/img/brand/sygnet.svg";
+import { Button } from "reactstrap";
 
 const propTypes = {
   children: PropTypes.node,
@@ -34,8 +35,14 @@ class DefaultHeader extends Component {
 
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
-            <NavLink to="#" className="nav-link">
-              <i className="icon-power"></i>
+            <NavLink
+              onClick={() => this.props.onLogout()}
+              to="#"
+              className="nav-link"
+            >
+              <Button className="bg-danger mr-2">
+                <i className="icon-power "></i> Deconnexion
+              </Button>
             </NavLink>
           </NavItem>
         </Nav>

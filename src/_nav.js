@@ -1,4 +1,3 @@
-const user = false;
 let expo = {
   items: [
     {
@@ -35,37 +34,5 @@ let expo = {
 };
 
 //le user Dashboard
-
-if (user) {
-  expo = {
-    items: [
-      {
-        name: "Tableau de bord",
-        url: "/users",
-        icon: "icon-speedometer",
-      },
-      {
-        title: true,
-        name: "Theme",
-        wrapper: {
-          // optional wrapper object
-          element: "", // required valid HTML5 element tag
-          attributes: {}, // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
-        },
-        class: "", // optional class names space delimited list for title item ex: "text-center"
-      },
-      {
-        name: "Mon profile",
-        url: "/Users/1",
-        icon: "icon-user",
-      },
-      {
-        name: "Ma demande d'admission",
-        url: "/admission",
-        icon: "fa fa-history",
-      },
-    ],
-  };
-}
 
 export default expo;
