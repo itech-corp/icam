@@ -70,12 +70,15 @@ const AdmissionForm = React.lazy(() =>
   import("./views/Pages/users/admission_form")
 );
 const Admission = React.lazy(() => import("./views/Pages/users/admission"));
+const userDashboard = React.lazy(() =>
+  import("./views/Pages/users/userDashboard")
+);
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: "/", exact: true, name: "Acceuil" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
-  { path: "/admission", name: "Admission", component: Admission },
+
   { path: "/submit", name: "Soumettre", component: AdmissionForm },
   { path: "/theme", name: "Theme", component: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", component: Colors },

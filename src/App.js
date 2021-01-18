@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import AdminLayout from "./containers/DefaultLayout/AdminLayout";
+import AdminLogin from "./views/Pages/Login/adminLogin";
+import UserProfile from "./views/Pages/users/userDashboard";
 // import { renderRoutes } from 'react-router-config';
 import "./App.scss";
+import Admission from "./views/Pages/users/admission_form";
 
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">
@@ -27,9 +29,28 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path="/admin"
+              path="/profile"
+              name="Profile"
+              render={(props) => <UserProfile {...props} />}
+            />
+            <Route
+              exact
+              path="/submit"
+              name="Profile"
+              render={(props) => <Admission {...props} />}
+            />
+
+            <Route
+              exact
+              path="/admin-icam"
               name="Admin"
-              render={(props) => <AdminLayout {...props} />}
+              render={(props) => <AdminLogin {...props} />}
+            />
+            <Route
+              exact
+              path="/500"
+              name="Page 500"
+              render={(props) => <Page500 {...props} />}
             />
             <Route
               exact
@@ -54,12 +75,6 @@ class App extends Component {
               path="/404"
               name="Page 404"
               render={(props) => <Page404 {...props} />}
-            />
-            <Route
-              exact
-              path="/500"
-              name="Page 500"
-              render={(props) => <Page500 {...props} />}
             />
 
             <Route

@@ -24,6 +24,8 @@ const Register = (props) => {
     password: "",
     confirmation: "",
     role: "user",
+    fullName: "",
+    status: "Nouveau",
   };
   const [loginData, setLoginDate] = useState(data);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,12 +46,17 @@ const Register = (props) => {
         setIsLoading(false);
         console.log("success");
         setLoginDate({ ...data });
-        props.history.push("/admission");
+        props.history.push("/profile");
+        saveUser();
       })
       .catch((error) => {
         setError(error);
         console.log(error);
       });
+  };
+  const saveUser = () => {
+    const user = firebase.getCurrentUser();
+    firebase.writeUserData(user.uid, loginData);
   };
 
   const { email, password, confirmation } = loginData;
@@ -73,7 +80,18 @@ const Register = (props) => {
                   <p className="text-muted text-center">
                     <img src={icam_logo} />{" "}
                   </p>
-
+                  <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>@</InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      id="fullName"
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="Nom complet"
+                      autoComplete="text"
+                    />
+                  </InputGroup>
                   <InputGroup className="mb-3">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>@</InputGroupText>

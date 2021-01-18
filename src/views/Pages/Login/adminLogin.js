@@ -14,14 +14,13 @@ import {
   InputGroupAddon,
   InputGroupText,
   Row,
-  Spinner,
 } from "reactstrap";
 import icam_logo from "../../../assets/img/icam.png";
 import Dashboard from "../../Dashboard/Dashboard";
 import usersData from "../../Users/UsersData";
 import login from "../Login/";
 
-const Login = (props) => {
+const AdminLogin = (props) => {
   const data = {
     pseudo: "",
     email: "",
@@ -36,7 +35,6 @@ const Login = (props) => {
   const [error, setError] = useState("");
   const firebase = useContext(FirebaseContext);
   const [btn, setBtn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (password.length > 5 && email !== "") {
@@ -58,20 +56,27 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     console.log("submited");
     e.preventDefault();
-    setIsLoading(true);
+
     firebase
       .loginUser(email, password, isAdmin)
       .then((user) => {
         setEmail("");
         setPassword("");
         console.log("success");
-        setIsLoading(false);
-        props.history.push("/profile");
-
+        if (email === "admin-admission@ulc-icam.com") {
+          console.log(`isAdmin = ${isAdmin}`);
+          user
+            ? props.history.push("/dashboard")
+            : props.history.push("/login");
+        } else {
+          console.log(`isAdmin = ${isAdmin}`);
+          user
+            ? props.history.push("/admission")
+            : props.history.push("/login");
+        }
         setLoginDate({ ...data });
       })
       .catch((error) => {
-        setIsLoading(false);
         setEmail("");
         setPassword("");
         setError(error);
@@ -99,8 +104,12 @@ const Login = (props) => {
               <Card className="p-4">
                 <CardBody>
                   <Form onSubmit={handleSubmit}>
-                    <h1>Connexion</h1>
-                    <p className="text-muted">Connecter vous a votre compte</p>
+                    <h1>
+                      <i className="fa fa-lock"></i> Portail Admin
+                    </h1>
+                    <p className="text-muted">
+                      Se Connecter en tant qu'administrateur
+                    </p>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
@@ -133,9 +142,7 @@ const Login = (props) => {
                     </InputGroup>
                     <Row>
                       <Col xs="6">
-                        {isLoading ? (
-                          <Spinner />
-                        ) : btn ? (
+                        {btn ? (
                           <Button
                             style={{
                               backgroundColor: "#f5ce42",
@@ -177,25 +184,6 @@ const Login = (props) => {
                     <div>
                       <img style={{ width: "50%" }} src={icam_logo} />
                     </div>
-                    <h2>S'inscrire</h2>
-                    <p>
-                      Inscrivez-vous et commencer votre demande d'admission en
-                      ligne
-                    </p>
-                    <Link to="/register">
-                      <Button
-                        style={{
-                          backgroundColor: "#bcc0c4",
-                          color: "white",
-                        }}
-                        className="mt-3"
-                        active
-                        tabIndex={-1}
-                      >
-                        S'inscrire Maintenant{" "}
-                        <i className="fa fa-arrow-circle-right"></i>
-                      </Button>
-                    </Link>
                   </div>
                 </CardBody>
               </Card>
@@ -207,4 +195,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default AdminLogin;

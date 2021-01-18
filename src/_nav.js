@@ -19,7 +19,7 @@ let expo = {
       name: "Liste des Etudiant",
       url: "/Users",
       icon: "icon-user",
-    },
+    } /*
     {
       name: "Admission en attente",
       url: "/theme/typography",
@@ -29,7 +29,7 @@ let expo = {
       name: "Statistiques",
       url: "/theme/typography",
       icon: "icon-graph",
-    },
+    },*/,
   ],
 };
 

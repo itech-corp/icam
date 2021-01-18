@@ -80,12 +80,35 @@ class Firebase {
 
   signoutUser = () => this.auth.signOut();
 
+  //writeUserData
   writeUserData = (userID, data) => {
     this.database.ref("users/" + userID).set(data);
   };
-  uploadFile = (userID, file) =>
-    this.storage.ref(`/images/${userID}/${file.name}`).put(file);
+
+  writeSubmissionData = (userID, data) => {
+    this.database.ref("userSubmission/" + userID).set(data);
+    this.database.ref(`users/${userID}/status`).set("En cours");
+  };
+
+  //uploader
+  uploadFile = (userID, file, fileName) =>
+    this.storage.ref(`/images/${userID}/${fileName}.png`).put(file);
+
+  //fetchCurrentUser
   getCurrentUser = () => this.auth.currentUser;
+
+  getAllUsers = () => this.database.ref("users/").once("value");
+
+  getUserSubmition = (id) =>
+    this.database.ref(`userSubmission/${id}`).once("value");
+
+  getUserFiles = (id, fileName) =>
+    this.storage.ref(`images/${id}`).child(fileName).getDownloadURL();
+
+  changeUserState = (userID, status) =>
+    this.database.ref(`users/${userID}/status`).set(status);
+  getCurrentUserState = (userID) =>
+    this.database.ref(`users/${userID}/status`).once("value");
 }
 
 export default Firebase;
