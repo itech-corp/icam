@@ -5,6 +5,7 @@ import ModalAdmission from "../../../views/Modals/Modal_admission";
 import { AppHeader, AppNavbarBrand, AppFooter } from "@coreui/react";
 import logo from "../../../assets/img/brand/logo.svg";
 import sygnet from "../../../assets/img/brand/sygnet.svg";
+import ParcourInput from "./dynaInput";
 
 import {
   Badge,
@@ -88,10 +89,127 @@ const Admission = (props) => {
 
     status: "",
   };
+  const InputData = [
+    <FormGroup row>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="date"
+          id="date"
+          name="date-input"
+          placeholder="date"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="classe"
+          name="text-input"
+          placeholder="Classe"
+        />
+      </Col>
+
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="section"
+          name="text-input"
+          placeholder="Section"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="etablissement"
+          name="text-input"
+          placeholder="Établissement"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="ville"
+          name="text-input"
+          placeholder="Ville"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="pays"
+          name="text-input"
+          placeholder="Pays"
+        />
+      </Col>
+    </FormGroup>,
+    <FormGroup row>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="date"
+          id="date"
+          name="date-input"
+          placeholder="date"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="classe"
+          name="text-input"
+          placeholder="Classe"
+        />
+      </Col>
+
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="section"
+          name="text-input"
+          placeholder="Section"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="etablissement"
+          name="text-input"
+          placeholder="Établissement"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="ville"
+          name="text-input"
+          placeholder="Ville"
+        />
+      </Col>
+      <Col>
+        <Input
+          onChange={handleParcourChange}
+          type="text"
+          id="pays"
+          name="text-input"
+          placeholder="Pays"
+        />
+      </Col>
+    </FormGroup>,
+  ];
 
   const [admissionData, setadmissionData] = useState(data);
   const [file, setFile] = useState("");
   const [user, setUser] = useState(data);
+  const [parcoursInput, setParcoursInput] = useState(InputData);
   const [userState, setUserState] = useState("Nouveau");
   const [url, setURL] = useState("");
   const signOut = (e) => {
@@ -109,6 +227,15 @@ const Admission = (props) => {
       setUser({ ...fetchedData });
     });
   };
+
+  useEffect(() => {
+    if (props.match.params.id) {
+      LoadUserData();
+    }
+  }, [parcoursInput]);
+
+  const handleAddInput = () => {};
+
   const firebase = useContext(FirebaseContext);
   const handleChange = (e) => {
     setadmissionData({ ...admissionData, [e.target.id]: e.target.value });
@@ -195,6 +322,7 @@ const Admission = (props) => {
               <Row>
                 <Col className="text-center align-center mt-5">
                   <h1>Tu as deja soumis ta demande , Mboutman 🙄</h1>
+
                   <h2>
                     Consulte le 👉<a href="#">ICI</a>
                   </h2>
@@ -244,7 +372,7 @@ const Admission = (props) => {
                                 type="text"
                                 id="name"
                                 name="text-input"
-                                placeholder="Noms"
+                                placeholder={user.name}
                                 onChange={handleChange}
                               />
                               <FormText color="muted">
@@ -262,7 +390,7 @@ const Admission = (props) => {
                                 type="text"
                                 id="fName"
                                 name="text-input"
-                                placeholder="Prenom(s)"
+                                placeholder={user.fName}
                               />
                               <FormText color="muted">
                                 Entrer Votre prenom tel que sur vos documents
@@ -279,7 +407,7 @@ const Admission = (props) => {
                                 type="text"
                                 id="address"
                                 name="text-input"
-                                placeholder="Addresse"
+                                placeholder={user.address}
                               />
                             </Col>
                           </FormGroup>
@@ -293,7 +421,7 @@ const Admission = (props) => {
                                 type="text"
                                 id="ville"
                                 name="text-input"
-                                placeholder="Ville"
+                                placeholder={user.ville}
                               />
                             </Col>
                           </FormGroup>
@@ -307,7 +435,7 @@ const Admission = (props) => {
                                 type="text"
                                 id="tel"
                                 name="text-input"
-                                placeholder="Telephone"
+                                placeholder={user.tel}
                               />
                             </Col>
                           </FormGroup>
@@ -321,7 +449,7 @@ const Admission = (props) => {
                                 type="email"
                                 id="email"
                                 name="email-input"
-                                placeholder="Enter l'Email"
+                                placeholder={user.email}
                                 autoComplete="email"
                               />
                             </Col>
@@ -336,7 +464,7 @@ const Admission = (props) => {
                                 type="text"
                                 id="nation"
                                 name="text-input"
-                                placeholder="Addresse"
+                                placeholder={user.nation}
                               />
                             </Col>
                           </FormGroup>
@@ -352,7 +480,7 @@ const Admission = (props) => {
                                 type="text"
                                 id="lNaissance"
                                 name="text-input"
-                                placeholder="Lieu de naissance"
+                                placeholder={user.lNaissance}
                               />
                             </Col>
                           </FormGroup>
@@ -370,6 +498,7 @@ const Admission = (props) => {
                                 id="dNaissance"
                                 name="date-input"
                                 placeholder="date"
+                                value={user.dNaissance}
                               />
                             </Col>
                           </FormGroup>
@@ -384,7 +513,7 @@ const Admission = (props) => {
                                   className="form-check-input"
                                   type="radio"
                                   id="sexe"
-                                  name="inline-radios"
+                                  name="sexe"
                                   value="Masculin"
                                 />
                                 <Label
@@ -401,7 +530,7 @@ const Admission = (props) => {
                                   className="form-check-input"
                                   type="radio"
                                   id="sexe"
-                                  name="inline-radios"
+                                  name="sexe"
                                   value="Feminin"
                                 />
                                 <Label
@@ -434,7 +563,7 @@ const Admission = (props) => {
                                   className="form-check-input"
                                   type="radio"
                                   id="diplome"
-                                  name="inline-radios"
+                                  name="diplome"
                                   value="oui"
                                 />
                                 <Label
@@ -451,7 +580,7 @@ const Admission = (props) => {
                                   className="form-check-input"
                                   type="radio"
                                   id="diplome"
-                                  name="inline-radios"
+                                  name="diplome"
                                   value="Non"
                                 />
                                 <Label
@@ -567,63 +696,8 @@ const Admission = (props) => {
                               </p>
                             </Col>
                           </FormGroup>
-                          <FormGroup row>
-                            <Col>
-                              <Input
-                                onChange={handleParcourChange}
-                                type="date"
-                                id="date"
-                                name="date-input"
-                                placeholder="date"
-                              />
-                            </Col>
-                            <Col>
-                              <Input
-                                onChange={handleParcourChange}
-                                type="text"
-                                id="classe"
-                                name="text-input"
-                                placeholder="Classe"
-                              />
-                            </Col>
+                          <ParcourInput />
 
-                            <Col>
-                              <Input
-                                onChange={handleParcourChange}
-                                type="text"
-                                id="section"
-                                name="text-input"
-                                placeholder="Section"
-                              />
-                            </Col>
-                            <Col>
-                              <Input
-                                onChange={handleParcourChange}
-                                type="text"
-                                id="etablissement"
-                                name="text-input"
-                                placeholder="Établissement"
-                              />
-                            </Col>
-                            <Col>
-                              <Input
-                                onChange={handleParcourChange}
-                                type="text"
-                                id="ville"
-                                name="text-input"
-                                placeholder="Ville"
-                              />
-                            </Col>
-                            <Col>
-                              <Input
-                                onChange={handleParcourChange}
-                                type="text"
-                                id="pays"
-                                name="text-input"
-                                placeholder="Pays"
-                              />
-                            </Col>
-                          </FormGroup>
                           <FormGroup row>
                             <Col md="4">
                               <Label htmlFor="text-input">

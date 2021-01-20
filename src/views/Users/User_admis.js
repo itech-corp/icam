@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from "reactstrap";
 import { FirebaseContext } from "../../components/Firebase";
@@ -49,23 +49,25 @@ const Users = () => {
   const [users, setUsers] = useState(userData);
   const [datable, setDatable] = useState();
   const LoadUsers = () => {
-    if (once) {
-      firebase.getAllUsers().then((snapshot) => {
-        setUsers(Object.entries(snapshot.val()));
-        Object.entries(snapshot.val()).map((usr) => datableUser.push(usr[1]));
-        setDatable(datableUser);
-        console.log(users);
-        once = false;
+    firebase.getAllUsers().then((snapshot) => {
+      setUsers(Object.entries(snapshot.val()));
+      Object.entries(snapshot.val()).map((usr) => {
+        if (usr[1].status === "Admis") datableUser.push(usr[1]);
       });
-    }
+      setDatable(datableUser);
+    });
   };
-
+  useEffect(() => {
+    LoadUsers();
+  }, []);
   return (
     <div className="animated fadeIn">
-      {" "}
-      {LoadUsers()}
       <Row>
-        <DataTable users={datable} tableTitle="Liste des etudiants admis" />
+        <DataTable
+          filter="admis"
+          users={datable}
+          tableTitle="Liste des etudiants admis"
+        />
         <Col xl={6}>
           {/* <Card>
             <CardHeader>

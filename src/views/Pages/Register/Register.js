@@ -82,7 +82,9 @@ const Register = (props) => {
                   </p>
                   <InputGroup className="mb-3">
                     <InputGroupAddon addonType="prepend">
-                      <InputGroupText>@</InputGroupText>
+                      <InputGroupText>
+                        <i className="icon-user"></i>
+                      </InputGroupText>
                     </InputGroupAddon>
                     <Input
                       id="fullName"

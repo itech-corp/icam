@@ -480,7 +480,7 @@ const User = (props) => {
                 </Button>
                 <Button
                   onClick={() =>
-                    changeUserState(setBtn2Loading, setConfirmBtn2, "Recaler")
+                    changeUserState(setBtn2Loading, setConfirmBtn2, "Admis")
                   }
                   disabled={confirmBtn2 ? true : false}
                   className=" w-25 ml-4"
@@ -505,7 +505,7 @@ const User = (props) => {
                     changeUserState(
                       setBtn4Loading,
                       setConfirmBtn4,
-                      "En attente"
+                      "Sur la liste attente"
                     )
                   }
                   disabled={confirmBtn4 ? true : false}

@@ -46,6 +46,12 @@ class App extends Component {
               name="Profile"
               render={(props) => <Admission {...props} />}
             />
+            <Route
+              exact
+              path="/submit/:id"
+              name="Profile"
+              render={(props) => <Admission {...props} />}
+            />
 
             <Route
               exact

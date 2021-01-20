@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from "reactstrap";
 import { FirebaseContext } from "../../components/Firebase";
@@ -10,7 +10,7 @@ function UserRow(props) {
   const user = props.user;
 
   const userLink = `/users/${user[0]}`;
-  console.log(user);
+
   const getBadge = (status) => {
     return status === "Admis"
       ? "success"
@@ -49,21 +49,19 @@ const Users = () => {
   const [users, setUsers] = useState(userData);
   const [datable, setDatable] = useState();
   const LoadUsers = () => {
-    if (once) {
-      firebase.getAllUsers().then((snapshot) => {
-        setUsers(Object.entries(snapshot.val()));
-        Object.entries(snapshot.val()).map((usr) => datableUser.push(usr[1]));
-        setDatable(datableUser);
-        console.log(users);
-        once = false;
-      });
-    }
+    firebase.getAllUsers().then((snapshot) => {
+      setUsers(Object.entries(snapshot.val()));
+      Object.entries(snapshot.val()).map((usr) => datableUser.push(usr[1]));
+      setDatable(datableUser);
+      console.log(users);
+      once = false;
+    });
   };
-
+  useEffect(() => {
+    LoadUsers();
+  }, []);
   return (
     <div className="animated fadeIn">
-      {" "}
-      {LoadUsers()}
       <Row>
         <DataTable users={datable} tableTitle="Liste de tous les etudiants" />
 

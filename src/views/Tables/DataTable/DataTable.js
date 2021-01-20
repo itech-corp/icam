@@ -31,9 +31,19 @@ class DataTable extends Component {
       </NavLink>
     );
   }
+  getBadge = (status) => {
+    return status === "Admis"
+      ? "success"
+      : status === "Nouveau"
+      ? "secondary"
+      : status === "En cours"
+      ? "warning"
+      : status === "Recaler"
+      ? "danger"
+      : "primary";
+  };
 
   render() {
-    console.log(this.props.users);
     return (
       <div className="animated">
         <Card>
@@ -61,16 +71,20 @@ class DataTable extends Component {
               <TableHeaderColumn isKey dataField="email">
                 Email
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="pourcentage" dataSort>
+              <TableHeaderColumn dataField="pourcentageBac" dataSort>
                 Pourcentage obtenu au BAC
               </TableHeaderColumn>
               <TableHeaderColumn dataField="nomEcole" dataSort>
                 Nom de l'ecole
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="sectionFiliere" dataSort>
+              <TableHeaderColumn dataField="section" dataSort>
                 Section ou filiere d'etude
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="sectionFiliere" dataSort>
+              <TableHeaderColumn
+                dataField="status"
+                columnClassName="bg-primary"
+                dataSort
+              >
                 Status
               </TableHeaderColumn>
             </BootstrapTable>

@@ -12,6 +12,7 @@ import {
   CardSubtitle,
   Button,
   Spinner,
+  Badge,
 } from "reactstrap";
 import ModalPerso from "../../Modals/Modal";
 import ModalCni from "../../Modals/Modal_cni";
@@ -19,6 +20,18 @@ import ModalCni from "../../Modals/Modal_cni";
 //import usersData from "./UsersData";
 import { FirebaseContext } from "../../../components/Firebase";
 import DataTable from "../../Tables/DataTable/DataTable";
+import { Link } from "react-router-dom";
+const getBadge = (status) => {
+  return status === "Admis"
+    ? "success"
+    : status === "Nouveau"
+    ? "secondary"
+    : status === "En cours"
+    ? "warning"
+    : status === "Recaler"
+    ? "danger"
+    : "primary";
+};
 
 const User = (props) => {
   const firebase = useContext(FirebaseContext);
@@ -75,6 +88,7 @@ const User = (props) => {
   };
 
   const [user, setUser] = useState(data); //usersData.find((user) => user.id.toString() === id);
+  const [userState, setUserState] = useState("");
   //Loader
   const [btn1Loading, setBtn1Loading] = useState(false);
   const [btn2Loading, setBtn2Loading] = useState(false);
@@ -99,6 +113,12 @@ const User = (props) => {
   const [cni, setCni] = useState("https://via.placeholder.com/400x300");
   const [cv, setCv] = useState("https://via.placeholder.com/400x300");
   const LoadUserData = () => {
+    let thisUser = firebase
+      .getCurrentUserState(props.match.params.id)
+      .then((snapshot) => {
+        setUserState(snapshot.val());
+        console.log(snapshot.val());
+      });
     firebase.getUserSubmition(props.match.params.id).then((snapshot) => {
       console.log(id);
       console.log(snapshot.val());
@@ -135,13 +155,7 @@ const User = (props) => {
           </span>,
         ],
       ];
-  const changeUserState = (loadSetter, btnSetter, status) => {
-    loadSetter(true);
-    firebase.changeUserState(id, status).then(() => {
-      btnSetter(true);
-      loadSetter(false);
-    });
-  };
+
   return (
     <div className="animated fadeIn">
       <Row>
@@ -149,7 +163,7 @@ const User = (props) => {
           <Card>
             <CardHeader>
               <strong>
-                <i className="icon-info pr-1"></i>Details de l'etudiant
+                <i className="icon-info pr-1"></i>Mes Informations
               </strong>
             </CardHeader>
             <CardBody>
@@ -375,12 +389,16 @@ const User = (props) => {
           <Card>
             <CardHeader>
               <strong>
-                <i className="icon-info pr-1"></i>Documents de l'etudiant
+                <i className="icon-info pr-1"></i>Mes Documents
               </strong>
             </CardHeader>
             <CardBody>
               <Row>
-                {" "}
+                <Col className="mb-4" xs={12}>
+                  Etat de ma Demande:
+                  <Badge color={getBadge(userState)}>{userState}</Badge>
+                </Col>
+
                 <Col xs={4}>
                   <Card>
                     <CardImg top width="100%" src={recu} alt="Card image cap" />
@@ -468,16 +486,15 @@ const User = (props) => {
             </CardBody>
             <Row>
               <Col className="text-center mb-4">
-                <Button
-                  onClick={() =>
-                    changeUserState(setBtn1Loading, setConfirmBtn1, "Inscrit")
-                  }
-                  disabled={confirmBtn1 ? true : false}
-                  className=" w-25 mr-4"
-                  color="primary"
-                >
-                  Modifier ma demande
-                </Button>
+                <Link to="/submit/ViymPvruPBf2UAw3HGqCGtkfRuC3">
+                  <Button
+                    disabled={confirmBtn1 ? true : false}
+                    className=" w-25 mr-4"
+                    color="primary"
+                  >
+                    Modifier ma demande
+                  </Button>
+                </Link>
               </Col>
               <Col xs={12} className="text-center mb-3"></Col>
             </Row>
