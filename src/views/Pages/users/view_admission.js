@@ -13,18 +13,18 @@ import {
   Button,
   Spinner,
 } from "reactstrap";
-import ModalPerso from "../Modals/Modal";
-import ModalCni from "../Modals/Modal_cni";
+import ModalPerso from "../../Modals/Modal";
+import ModalCni from "../../Modals/Modal_cni";
 
-import usersData from "./UsersData";
-import { FirebaseContext } from "../../components/Firebase";
-import DataTable from "../Tables/DataTable/DataTable";
+//import usersData from "./UsersData";
+import { FirebaseContext } from "../../../components/Firebase";
+import DataTable from "../../Tables/DataTable/DataTable";
 
 const User = (props) => {
   const firebase = useContext(FirebaseContext);
   const { id } = props.match.params;
   const data = {
-    name: "issa",
+    name: "",
     fName: "",
     address: "",
     ville: "",
@@ -476,44 +476,10 @@ const User = (props) => {
                   className=" w-25 mr-4"
                   color="primary"
                 >
-                  {btn1Loading ? <Spinner /> : "Confirmer l'inscription"}
-                </Button>
-                <Button
-                  onClick={() =>
-                    changeUserState(setBtn2Loading, setConfirmBtn2, "Recaler")
-                  }
-                  disabled={confirmBtn2 ? true : false}
-                  className=" w-25 ml-4"
-                  color="success"
-                >
-                  {btn2Loading ? <Spinner /> : "Confirmer l'admission"}
+                  Modifier ma demande
                 </Button>
               </Col>
-              <Col xs={12} className="text-center mb-3">
-                <Button
-                  onClick={() =>
-                    changeUserState(setBtn3Loading, setConfirmBtn3, "Recaler")
-                  }
-                  disabled={confirmBtn3 ? true : false}
-                  color="danger w-50"
-                >
-                  {btn3Loading ? <Spinner /> : "Recaler"}
-                </Button>
-
-                <Button
-                  onClick={() =>
-                    changeUserState(
-                      setBtn4Loading,
-                      setConfirmBtn4,
-                      "En attente"
-                    )
-                  }
-                  disabled={confirmBtn4 ? true : false}
-                  color="warning w-50"
-                >
-                  {btn4Loading ? <Spinner /> : "Mettre sur la liste attente"}
-                </Button>
-              </Col>
+              <Col xs={12} className="text-center mb-3"></Col>
             </Row>
           </Card>
         </Col>

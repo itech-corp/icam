@@ -65,6 +65,9 @@ const Typography = React.lazy(() => import("./views/Theme/Typography"));
 const Widgets = React.lazy(() => import("./views/Widgets/Widgets"));
 const Users = React.lazy(() => import("./views/Users/Users"));
 const User = React.lazy(() => import("./views/Users/User"));
+const UserAdmis = React.lazy(() => import("./views/Users/User_admis"));
+const UserAttente = React.lazy(() => import("./views/Users/User_attente"));
+const UserRecale = React.lazy(() => import("./views/Users/User_recale"));
 
 const AdmissionForm = React.lazy(() =>
   import("./views/Pages/users/admission_form")
@@ -79,7 +82,6 @@ const routes = [
   { path: "/", exact: true, name: "Acceuil" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
 
-  { path: "/submit", name: "Soumettre", component: AdmissionForm },
   { path: "/theme", name: "Theme", component: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", component: Colors },
   { path: "/theme/typography", name: "Typography", component: Typography },
@@ -181,7 +183,30 @@ const routes = [
   { path: "/apps/email/message", name: "Message", component: Message },
   { path: "/apps/invoicing", name: "Invoice", component: Invoice, exact: true },
   { path: "/apps/invoicing/invoice", name: "Invoice", component: Invoice },
-  { path: "/users", exact: true, name: "Users", component: Users },
+  {
+    path: "/User_admis",
+    exact: true,
+    name: "Etudiants admis",
+    component: UserAdmis,
+  },
+  {
+    path: "/User_attente",
+    exact: true,
+    name: "Etudiants sur la liste d'attente",
+    component: UserAttente,
+  },
+  {
+    path: "/User_recale",
+    exact: true,
+    name: "Etudiants recales",
+    component: UserRecale,
+  },
+  {
+    path: "/users",
+    exact: true,
+    name: "Liste de tous les etudiants",
+    component: Users,
+  },
   { path: "/users/:id", exact: true, name: "User Details", component: User },
 ];
 

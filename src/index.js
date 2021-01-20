@@ -8,7 +8,32 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import Firebase, { FirebaseContext } from "./components/Firebase";
+import * as admin from "firebase-admin";
+const nodemailer = require("nodemailer");
 
+admin.initializeApp();
+var transporter = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "9b1b96219098d4",
+    pass: "e39611dff11ebc",
+  },
+});
+var mailOptions = {
+  from: "ibrahimmahamatmoussa@gmail.com",
+  to: "corporationitech@gmail.com",
+  subject: "Sending Email using Node.js",
+  text: "That was easy!",
+};
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Email sent: " + info.response);
+  }
+});
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
     <App />

@@ -65,8 +65,7 @@ const Users = () => {
       {" "}
       {LoadUsers()}
       <Row>
-        <DataTable users={datable} tableTitle="Liste de tous les etudiants" />
-
+        <DataTable users={datable} tableTitle="Liste des etudiants admis" />
         <Col xl={6}>
           {/* <Card>
             <CardHeader>

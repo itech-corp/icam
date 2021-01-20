@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import AdminLogin from "./views/Pages/Login/adminLogin";
 import UserProfile from "./views/Pages/users/userDashboard";
+import ViewAdmission from "./views/Pages/users/view_admission";
 // import { renderRoutes } from 'react-router-config';
 import "./App.scss";
 import Admission from "./views/Pages/users/admission_form";
@@ -32,6 +33,12 @@ class App extends Component {
               path="/profile"
               name="Profile"
               render={(props) => <UserProfile {...props} />}
+            />
+            <Route
+              exact
+              path="/my_admission/:id"
+              name="Ma demande d'admission"
+              render={(props) => <ViewAdmission {...props} />}
             />
             <Route
               exact

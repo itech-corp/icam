@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 class Typography extends Component {
   render() {
-    const useLink = `/submit/${this.props.User}`;
+    const useLink = `/submit/`;
+    const userlink = `/my_admission/ViymPvruPBf2UAw3HGqCGtkfRuC3`;
+
     return (
       <div>
         <p className="text-center">
@@ -16,14 +18,16 @@ class Typography extends Component {
               <span>Faire une demande d'admission</span>
             </Button>
           </Link>
-          <Button
-            style={{ backgroundColor: "#bcc0c4", color: "white" }}
-            size="lg"
-            className="btn-instagram btn-brand  mr-1 mb-1"
-          >
-            <i className="fa fa-eye"></i>
-            <span>Consulter Votre demande d'admission</span>
-          </Button>
+          <Link to={userlink}>
+            <Button
+              style={{ backgroundColor: "#bcc0c4", color: "white" }}
+              size="lg"
+              className="btn-instagram btn-brand  mr-1 mb-1"
+            >
+              <i className="fa fa-eye"></i>
+              <span>Consulter Votre demande d'admission</span>
+            </Button>
+          </Link>
         </p>
       </div>
     );

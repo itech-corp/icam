@@ -19,17 +19,17 @@ let expo = {
       name: "Liste des Etudiant",
       url: "/Users",
       icon: "icon-user",
-    } /*
+    },
     {
-      name: "Admission en attente",
-      url: "/theme/typography",
+      name: "Etudiants Admis",
+      url: "/User_admis",
       icon: "fa fa-history",
     },
     {
-      name: "Statistiques",
-      url: "/theme/typography",
+      name: "Liste d'attente",
+      url: "/User_attente",
       icon: "icon-graph",
-    },*/,
+    },
   ],
 };
 

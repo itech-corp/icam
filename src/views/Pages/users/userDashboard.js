@@ -26,7 +26,7 @@ const DefaultHeader = React.lazy(() =>
 const DefaultLayout = (props) => {
   const firebase = useContext(FirebaseContext);
   const [userState, setUserState] = useState("Nouveau");
-  const user = firebase.getCurrentUser();
+  const [user, setUser] = useState(null);
 
   const loading = () => (
     <div className="animated fadeIn pt-1 text-center">
@@ -42,17 +42,28 @@ const DefaultLayout = (props) => {
   const logUsers = () => {
     firebase.getAllUser();
   };
+
   const getUserState = () => {
     const userID = firebase.getCurrentUser();
+
     if (userID)
-      firebase
-        .getCurrentUserState(userID.uid)
-        .then((userStatus) => setUserState(userStatus));
+      firebase.getCurrentUserState(userID.uid).then((status) => {
+        setUserState(status);
+        console.log(status);
+      });
+  };
+  const getUser = () => {
+    const userID = firebase.getCurrentUser();
+
+    setUser(userID);
+    console.log(userID);
   };
   useEffect(() => {
+    //  getUserState();
+    getUser();
     getUserState();
   }, []);
-  getUserState();
+
   return (
     <div className="app">
       <AppHeader fixed>
@@ -71,13 +82,15 @@ const DefaultLayout = (props) => {
             />
           </div>
 
-          <Button onClick={signOut}>Deconnexion</Button>
+          <Button color="danger" className="bg-danger" onClick={signOut}>
+            Deconnexion
+          </Button>
         </Row>
       </AppHeader>
       <div className="app-body">
         <main className="main mt-4">
           <Container fluid>
-            <Admission User={userState} log={() => logUsers} />
+            <Admission User={user} log={() => logUsers} />
           </Container>
         </main>
       </div>

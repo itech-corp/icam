@@ -91,6 +91,7 @@ const Admission = (props) => {
 
   const [admissionData, setadmissionData] = useState(data);
   const [file, setFile] = useState("");
+  const [user, setUser] = useState(data);
   const [userState, setUserState] = useState("Nouveau");
   const [url, setURL] = useState("");
   const signOut = (e) => {
@@ -99,7 +100,15 @@ const Admission = (props) => {
       props.history.push("/login");
     });
   };
-
+  const LoadUserData = () => {
+    firebase.getUserSubmition(props.match.params.id).then((snapshot) => {
+      // console.log(id);
+      console.log(snapshot.val());
+      console.log(data.name);
+      let fetchedData = snapshot.val();
+      setUser({ ...fetchedData });
+    });
+  };
   const firebase = useContext(FirebaseContext);
   const handleChange = (e) => {
     setadmissionData({ ...admissionData, [e.target.id]: e.target.value });
@@ -174,12 +183,14 @@ const Admission = (props) => {
             />
           </div>
 
-          <Button onClick={signOut}>Deconnexion</Button>
+          <Button color="danger" onClick={signOut}>
+            Deconnexion
+          </Button>
         </Row>
       </AppHeader>
       <div className="app-body">
         <main className="main mt-4">
-          {!userState !== "Nouveau" ? (
+          {userState !== "Nouveau" ? (
             <Container>
               <Row>
                 <Col className="text-center align-center mt-5">
@@ -832,7 +843,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Annonce à la radio"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -851,7 +862,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Annonce dans les paroisses"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -870,7 +881,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Tracts"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -889,7 +900,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Affiches"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -912,7 +923,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option1"
+                                      value="Site internet"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -931,7 +942,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Descentes dans les écoles"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -950,7 +961,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="par un de vos proches"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -969,7 +980,7 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="par des étudiants de la Fac"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -988,12 +999,12 @@ const Admission = (props) => {
                                       type="radio"
                                       id="vuIcam"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Autres"
                                     />
                                     <Label
                                       className="form-check-label"
                                       check
-                                      htmlFor="inline-radio2"
+                                      htmlFor="Autres"
                                     >
                                       Autres
                                     </Label>
@@ -1030,7 +1041,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option1"
+                                      value="Energie"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1049,7 +1060,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Maintenance"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1068,7 +1079,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Mines-Métallurgie-Chimie industrielle"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1087,7 +1098,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Mécanique"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1106,7 +1117,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Informatique-réseaux-télécommunication"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1129,7 +1140,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option1"
+                                      value="Électricité-Électronique"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1148,7 +1159,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="oBâtiments et travaux publics"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1167,7 +1178,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Bureau d’études"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1186,7 +1197,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Agro-Alimentaire"
                                     />
                                     <Label
                                       className="form-check-label"
@@ -1205,7 +1216,7 @@ const Admission = (props) => {
                                       type="checkbox"
                                       id="debauche"
                                       name="inline-radios"
-                                      value="option2"
+                                      value="Autres"
                                     />
                                     <Label
                                       className="form-check-label"
