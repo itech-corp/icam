@@ -6,7 +6,7 @@ import { AppHeader, AppNavbarBrand, AppFooter } from "@coreui/react";
 import logo from "../../../assets/img/brand/logo.svg";
 import sygnet from "../../../assets/img/brand/sygnet.svg";
 import ParcourInput from "./dynaInput";
-
+import { withRouter } from "react-router";
 import {
   Badge,
   Button,
@@ -292,6 +292,7 @@ const Admission = (props) => {
     if (user) {
       firebase.writeSubmissionData(user.uid, admissionData);
     }
+    props.history.push("/my_admission/");
   };
 
   return (
@@ -321,10 +322,11 @@ const Admission = (props) => {
             <Container>
               <Row>
                 <Col className="text-center align-center mt-5">
-                  <h1>Tu as deja soumis ta demande , Mboutman 🙄</h1>
+                  <h1>Tu as deja soumis ta demande</h1>
 
                   <h2>
-                    Consulte le 👉<a href="#">ICI</a>
+                    Consulte la 👉
+                    <a href={props.histor.push("/my_admission/")}> ICI</a>
                   </h2>
                   <h1>🚶‍</h1>
                 </Col>
@@ -374,6 +376,7 @@ const Admission = (props) => {
                                 name="text-input"
                                 placeholder={user.name}
                                 onChange={handleChange}
+                                required
                               />
                               <FormText color="muted">
                                 Entrer Votre Nom tel que sur vos documents
@@ -451,6 +454,7 @@ const Admission = (props) => {
                                 name="email-input"
                                 placeholder={user.email}
                                 autoComplete="email"
+                                required
                               />
                             </Col>
                           </FormGroup>
@@ -465,6 +469,7 @@ const Admission = (props) => {
                                 id="nation"
                                 name="text-input"
                                 placeholder={user.nation}
+                                required
                               />
                             </Col>
                           </FormGroup>
@@ -633,7 +638,9 @@ const Admission = (props) => {
                             <Col xs="8" md="6">
                               <Input
                                 onChange={handleEtatChange}
-                                type="text"
+                                type="number"
+                                min="0"
+                                max="100"
                                 id="pourcentage"
                                 name="text-input"
                                 placeholder="Pourcentage"
@@ -651,6 +658,7 @@ const Admission = (props) => {
                                 id="etablissement"
                                 name="text-input"
                                 placeholder="Etablissement"
+                                required
                               />
                             </Col>
                           </FormGroup>
@@ -1264,7 +1272,7 @@ const Admission = (props) => {
                                   </FormGroup>
                                 </Col>
                                 <Col>
-                                  <FormGroup check inline>
+                                  <FormGroup check inline required>
                                     <Input
                                       onChange={handleChange}
                                       className="form-check-input"
@@ -1379,6 +1387,7 @@ const Admission = (props) => {
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="bulletin"
+                                required
                               />
                             </Col>
                           </FormGroup>
@@ -1409,6 +1418,7 @@ const Admission = (props) => {
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="cni"
+                                required
                               />
                             </Col>
                           </FormGroup>

@@ -66,6 +66,8 @@ const Widgets = React.lazy(() => import("./views/Widgets/Widgets"));
 const Users = React.lazy(() => import("./views/Users/Users"));
 const User = React.lazy(() => import("./views/Users/User"));
 const UserAdmis = React.lazy(() => import("./views/Users/User_admis"));
+const UserNew = React.lazy(() => import("./views/Users/User_new"));
+
 const UserAttente = React.lazy(() => import("./views/Users/User_attente"));
 const UserRecale = React.lazy(() => import("./views/Users/User_recale"));
 
@@ -186,25 +188,31 @@ const routes = [
   {
     path: "/User_admis",
     exact: true,
-    name: "Etudiants admis",
+    name: "Candidats admis",
     component: UserAdmis,
   },
   {
     path: "/User_attente",
     exact: true,
-    name: "Etudiants sur la liste d'attente",
+    name: "Candidats sur la liste d'attente",
     component: UserAttente,
+  },
+  {
+    path: "/User_new",
+    exact: true,
+    name: "Nouveaux candidats",
+    component: UserNew,
   },
   {
     path: "/User_recale",
     exact: true,
-    name: "Etudiants recales",
+    name: "Candidats recales",
     component: UserRecale,
   },
   {
     path: "/users",
     exact: true,
-    name: "Liste de tous les etudiants",
+    name: "Liste de tous les candidats",
     component: Users,
   },
   { path: "/users/:id", exact: true, name: "User Details", component: User },

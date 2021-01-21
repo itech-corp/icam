@@ -1,13 +1,8 @@
 let expo = {
   items: [
     {
-      name: "Tableau de bord",
-      url: "/dashboard",
-      icon: "icon-speedometer",
-    },
-    {
       title: true,
-      name: "Theme",
+      name: "Gestion des Candidats",
       wrapper: {
         // optional wrapper object
         element: "", // required valid HTML5 element tag
@@ -16,19 +11,24 @@ let expo = {
       class: "", // optional class names space delimited list for title item ex: "text-center"
     },
     {
-      name: "Liste des Etudiant",
+      name: "Tous les candiats",
       url: "/Users",
-      icon: "icon-user",
+      icon: "fa fa-database",
     },
     {
-      name: "Etudiants Admis",
+      name: "Nouveaux candidats",
+      url: "/User_new",
+      icon: "fa fa-user-plus",
+    },
+    {
+      name: "Candidats Admis",
       url: "/User_admis",
-      icon: "fa fa-history",
+      icon: "fa fa-check",
     },
     {
       name: "Liste d'attente",
       url: "/User_attente",
-      icon: "icon-graph",
+      icon: "fa fa-clock-o",
     },
   ],
 };

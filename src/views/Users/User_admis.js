@@ -66,7 +66,7 @@ const Users = () => {
         <DataTable
           filter="admis"
           users={datable}
-          tableTitle="Liste des etudiants admis"
+          tableTitle="Liste des candidats admis"
         />
         <Col xl={6}>
           {/* <Card>

@@ -52,7 +52,8 @@ const Users = () => {
     firebase.getAllUsers().then((snapshot) => {
       setUsers(Object.entries(snapshot.val()));
       Object.entries(snapshot.val()).map((usr) => {
-        if (usr[1].status === "En attente") datableUser.push(usr[1]);
+        if (usr[1].status === "Sur la liste d'attente")
+          datableUser.push(usr[1]);
       });
       setDatable(datableUser);
     });
@@ -66,7 +67,7 @@ const Users = () => {
       <Row>
         <DataTable
           users={datable}
-          tableTitle="Liste des etudiants sur la liste d'attente"
+          tableTitle="Liste des candidats sur la liste d'attente"
         />
         <Col xl={6}>
           {/* <Card>

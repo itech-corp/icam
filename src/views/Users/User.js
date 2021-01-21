@@ -71,7 +71,7 @@ const User = (props) => {
     debauche: "",
     autreInfo: "",
 
-    status: "En cours de traitement ",
+    status: "En cours de traitement",
   };
 
   const [user, setUser] = useState(data); //usersData.find((user) => user.id.toString() === id);
@@ -492,7 +492,7 @@ const User = (props) => {
               <Col xs={12} className="text-center mb-3">
                 <Button
                   onClick={() =>
-                    changeUserState(setBtn3Loading, setConfirmBtn3, "Recaler")
+                    changeUserState(setBtn3Loading, setConfirmBtn3, "Recale")
                   }
                   disabled={confirmBtn3 ? true : false}
                   color="danger w-50"
@@ -505,13 +505,13 @@ const User = (props) => {
                     changeUserState(
                       setBtn4Loading,
                       setConfirmBtn4,
-                      "Sur la liste attente"
+                      "Sur la liste d'attente"
                     )
                   }
                   disabled={confirmBtn4 ? true : false}
                   color="warning w-50"
                 >
-                  {btn4Loading ? <Spinner /> : "Mettre sur la liste attente"}
+                  {btn4Loading ? <Spinner /> : "Mettre sur la liste d'attente"}
                 </Button>
               </Col>
             </Row>

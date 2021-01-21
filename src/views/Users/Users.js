@@ -89,6 +89,7 @@ const Users = () => {
             
             </CardBody>
           </Card>  */}
+          <p>Nombre de Total candidats : {users.length}</p>
         </Col>
       </Row>
     </div>

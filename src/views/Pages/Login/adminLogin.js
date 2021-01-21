@@ -63,17 +63,13 @@ const AdminLogin = (props) => {
         setEmail("");
         setPassword("");
         console.log("success");
-        if (email === "admin-admission@ulc-icam.com") {
+        /*if (email === "admin-admission@ulc-icam.com") {
           console.log(`isAdmin = ${isAdmin}`);
-          user
-            ? props.history.push("/dashboard")
-            : props.history.push("/login");
-        } else {
-          console.log(`isAdmin = ${isAdmin}`);
-          user
-            ? props.history.push("/admission")
-            : props.history.push("/login");
-        }
+          user ? props.history.push("/") : props.history.push("/login");
+        } else {*/
+        console.log(`isAdmin = ${isAdmin}`);
+        user ? props.history.push("/User_new") : props.history.push("/login");
+        //}
         setLoginDate({ ...data });
       })
       .catch((error) => {

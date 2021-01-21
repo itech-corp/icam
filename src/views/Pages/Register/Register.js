@@ -25,7 +25,7 @@ const Register = (props) => {
     confirmation: "",
     role: "user",
     fullName: "",
-    status: "Nouveau",
+    status: "En cours de traitement",
   };
   const [loginData, setLoginDate] = useState(data);
   const [isLoading, setIsLoading] = useState(false);
