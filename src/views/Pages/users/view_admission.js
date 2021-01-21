@@ -165,6 +165,10 @@ const User = (props) => {
               <strong>
                 <i className="icon-info pr-1"></i>Mes Informations
               </strong>
+              <Col className="mb-4" xs={12}>
+                Etat de ma Demande:
+                <Badge color={getBadge(userState)}>{userState}</Badge>
+              </Col>
             </CardHeader>
             <CardBody>
               <Table responsive striped hover>
@@ -394,11 +398,6 @@ const User = (props) => {
             </CardHeader>
             <CardBody>
               <Row>
-                <Col className="mb-4" xs={12}>
-                  Etat de ma Demande:
-                  <Badge color={getBadge(userState)}>{userState}</Badge>
-                </Col>
-
                 <Col xs={4}>
                   <Card>
                     <CardImg top width="100%" src={recu} alt="Card image cap" />
