@@ -10,7 +10,7 @@ const Typography = () => {
   const firebase = useContext(FirebaseContext);
   const getCurrentUserID = () => {};
   useEffect(() => {
-    new Promise(firebase.getCurrentUser()).then((usr) => {});
+    //new Promise(firebase.getCurrentUser()).then((usr) => {});
     getCurrentUserID();
   }, [user]);
 
