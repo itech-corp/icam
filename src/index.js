@@ -8,7 +8,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import Firebase, { FirebaseContext } from "./components/Firebase";
-import * as admin from "firebase-admin";
+/*import * as admin from "firebase-admin";
 const nodemailer = require("nodemailer");
 
 admin.initializeApp();
@@ -33,7 +33,7 @@ transporter.sendMail(mailOptions, function (error, info) {
   } else {
     console.log("Email sent: " + info.response);
   }
-});
+});*/
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
     <App />
