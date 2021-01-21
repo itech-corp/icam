@@ -16,19 +16,31 @@ let expo = {
       icon: "fa fa-database",
     },
     {
-      name: "Nouveaux candidats",
+      name: "Nouveaux",
       url: "/User_new",
       icon: "fa fa-user-plus",
+      badge: {
+        variant: "info",
+        text: "6",
+      },
     },
     {
       name: "Candidats Admis",
       url: "/User_admis",
       icon: "fa fa-check",
+      badge: {
+        variant: "success",
+        text: "6",
+      },
     },
     {
       name: "Liste d'attente",
       url: "/User_attente",
       icon: "fa fa-clock-o",
+      badge: {
+        variant: "danger",
+        text: "6",
+      },
     },
   ],
 };

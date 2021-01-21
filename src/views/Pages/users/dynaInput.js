@@ -61,7 +61,6 @@ function App() {
                     type="date"
                     id="date"
                     placeholder="Date"
-                    value={x.firstName}
                     onChange={(e) => handleInputChange(e, i)}
                   />
                 </Col>
@@ -72,7 +71,7 @@ function App() {
                     type="text"
                     id="classe"
                     placeholder="Classe"
-                    value={x.lastName}
+                    // value={x.lastName}
                     onChange={(e) => handleInputChange(e, i)}
                   />
                 </Col>
@@ -83,7 +82,7 @@ function App() {
                     type="text"
                     id="section"
                     placeholder="Section"
-                    value={x.lastName}
+                    //  value={x.lastName}
                     onChange={(e) => handleInputChange(e, i)}
                   />
                 </Col>
@@ -94,7 +93,7 @@ function App() {
                     type="text"
                     id="etablissement"
                     placeholder="Etablissement"
-                    value={x.lastName}
+                    //  value={x.lastName}
                     onChange={(e) => handleInputChange(e, i)}
                   />
                 </Col>
@@ -105,7 +104,7 @@ function App() {
                     type="text"
                     id="ville"
                     placeholder="Ville"
-                    value={x.lastName}
+                    //  value={x.lastName}
                     onChange={(e) => handleInputChange(e, i)}
                   />
                 </Col>
@@ -116,7 +115,7 @@ function App() {
                     name="Text-input"
                     type="text"
                     placeholder="Pays"
-                    value={x.lastName}
+                    //  value={x.lastName}
                     onChange={(e) => handleInputChange(e, i)}
                   />
                 </Col>

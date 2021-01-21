@@ -166,8 +166,11 @@ const User = (props) => {
                 <i className="icon-info pr-1"></i>Mes Informations
               </strong>
               <Col className="mb-4" xs={12}>
-                Etat de ma Demande:
-                <Badge color={getBadge(userState)}>{userState}</Badge>
+                <h3>
+                  {" "}
+                  Etat de ma Demande:{" "}
+                  <Badge color={getBadge(userState)}>{userState}</Badge>
+                </h3>
               </Col>
             </CardHeader>
             <CardBody>

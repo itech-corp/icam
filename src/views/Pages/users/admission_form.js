@@ -291,8 +291,8 @@ const Admission = (props) => {
     const user = firebase.getCurrentUser();
     if (user) {
       firebase.writeSubmissionData(user.uid, admissionData);
+      props.history.push(`/my_admission/${user.uid}`);
     }
-    props.history.push("/my_admission/");
   };
 
   return (
@@ -376,7 +376,6 @@ const Admission = (props) => {
                                 name="text-input"
                                 placeholder={user.name}
                                 onChange={handleChange}
-                                required
                               />
                               <FormText color="muted">
                                 Entrer Votre Nom tel que sur vos documents
@@ -454,7 +453,6 @@ const Admission = (props) => {
                                 name="email-input"
                                 placeholder={user.email}
                                 autoComplete="email"
-                                required
                               />
                             </Col>
                           </FormGroup>
@@ -469,7 +467,6 @@ const Admission = (props) => {
                                 id="nation"
                                 name="text-input"
                                 placeholder={user.nation}
-                                required
                               />
                             </Col>
                           </FormGroup>
@@ -503,7 +500,6 @@ const Admission = (props) => {
                                 id="dNaissance"
                                 name="date-input"
                                 placeholder="date"
-                                value={user.dNaissance}
                               />
                             </Col>
                           </FormGroup>
@@ -658,7 +654,6 @@ const Admission = (props) => {
                                 id="etablissement"
                                 name="text-input"
                                 placeholder="Etablissement"
-                                required
                               />
                             </Col>
                           </FormGroup>
@@ -1272,7 +1267,7 @@ const Admission = (props) => {
                                   </FormGroup>
                                 </Col>
                                 <Col>
-                                  <FormGroup check inline required>
+                                  <FormGroup check inline>
                                     <Input
                                       onChange={handleChange}
                                       className="form-check-input"
@@ -1341,7 +1336,11 @@ const Admission = (props) => {
                           <FormGroup row>
                             <Col xs="8" md="6">
                               <p className="form-control-static text-left">
-                                <strong>DOCUMENTS SCOLAIRES</strong>
+                                <strong>DOCUMENTS SCOLAIRES </strong>{" "}
+                                <i>
+                                  (Format accepter:JPEG,JPG,PDF et DOCX
+                                  uniquement)
+                                </i>
                               </p>
                             </Col>
                           </FormGroup>
@@ -1354,6 +1353,7 @@ const Admission = (props) => {
                             <Col xs="12" md="9">
                               <Input
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.docx"
                                 id="file-input"
                                 name="lettreM"
                                 onChange={handleFileChange}
@@ -1369,6 +1369,7 @@ const Admission = (props) => {
                             <Col xs="12" md="9">
                               <Input
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.docx"
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="cv"
@@ -1384,10 +1385,10 @@ const Admission = (props) => {
                             <Col xs="12" md="9">
                               <Input
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.docx"
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="bulletin"
-                                required
                               />
                             </Col>
                           </FormGroup>
@@ -1400,6 +1401,7 @@ const Admission = (props) => {
                             <Col xs="12" md="9">
                               <Input
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.docx"
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="passeport"
@@ -1415,10 +1417,10 @@ const Admission = (props) => {
                             <Col xs="12" md="9">
                               <Input
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.docx"
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="cni"
-                                required
                               />
                             </Col>
                           </FormGroup>
@@ -1431,6 +1433,7 @@ const Admission = (props) => {
                             <Col xs="12" md="9">
                               <Input
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.docx"
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="lettreR"
@@ -1446,6 +1449,7 @@ const Admission = (props) => {
                             <Col xs="12" md="9">
                               <Input
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.docx"
                                 onChange={handleFileChange}
                                 id="file-input"
                                 name="recu"
