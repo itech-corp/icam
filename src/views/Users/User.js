@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import ModalPerso from "../Modals/Modal";
 import ModalCni from "../Modals/Modal_cni";
-
+import emailjs from "emailjs-com";
 import usersData from "./UsersData";
 import { FirebaseContext } from "../../components/Firebase";
 import DataTable from "../Tables/DataTable/DataTable";
@@ -125,6 +125,18 @@ const User = (props) => {
     LoadUserFile();
   }, []);
 
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_qtmfbc8", "template_3k51mf8", e.target).then(
+      (result) => {
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
+  }
   const userDetails = user
     ? Object.entries(user)
     : [
@@ -467,52 +479,165 @@ const User = (props) => {
               </Row>
             </CardBody>
             <Row>
-              <Col className="text-center mb-4">
-                <Button
-                  onClick={() =>
-                    changeUserState(setBtn1Loading, setConfirmBtn1, "Inscrit")
-                  }
-                  disabled={confirmBtn1 ? true : false}
-                  className=" w-25 mr-4"
-                  color="primary"
+              <Col xs={12} className="text-center d-flex  w-100 mb-4">
+                <form style={{ flex: 1 }} onSubmit={sendEmail}>
+                  <input
+                    style={{ display: "hidden" }}
+                    type="hidden"
+                    name="contact_number"
+                  />
+                  <input
+                    hidden
+                    value={user.name}
+                    type="text"
+                    name="user_name"
+                  />
+                  <input
+                    hidden
+                    type="email"
+                    value="israelmink98@gmail.com"
+                    name="user_email"
+                  />
+                  <textarea
+                    hidden
+                    value="Vous avez bien ete inscrit"
+                    name="message"
+                  />
+                  <Button
+                    className=""
+                    type="submit"
+                    onClick={() =>
+                      changeUserState(setBtn1Loading, setConfirmBtn1, "Inscrit")
+                    }
+                    disabled={confirmBtn1 ? true : false}
+                    className=""
+                    color="primary w-75"
+                  >
+                    {btn1Loading ? <Spinner /> : "Confirmer l'inscription"}
+                  </Button>
+                </form>
+                <form
+                  style={{ flex: 1 }}
+                  className="contact-form"
+                  onSubmit={sendEmail}
                 >
-                  {btn1Loading ? <Spinner /> : "Confirmer l'inscription"}
-                </Button>
-                <Button
-                  onClick={() =>
-                    changeUserState(setBtn2Loading, setConfirmBtn2, "Admis")
-                  }
-                  disabled={confirmBtn2 ? true : false}
-                  className=" w-25 ml-4"
-                  color="success"
-                >
-                  {btn2Loading ? <Spinner /> : "Confirmer l'admission"}
-                </Button>
-              </Col>
-              <Col xs={12} className="text-center mb-3">
-                <Button
-                  onClick={() =>
-                    changeUserState(setBtn3Loading, setConfirmBtn3, "Recale")
-                  }
-                  disabled={confirmBtn3 ? true : false}
-                  color="danger w-50"
-                >
-                  {btn3Loading ? <Spinner /> : "Recaler"}
-                </Button>
+                  <input type="hidden" name="contact_number" />
+                  <input
+                    hidden
+                    value={user.name}
+                    type="text"
+                    name="user_name"
+                  />
 
-                <Button
-                  onClick={() =>
-                    changeUserState(
-                      setBtn4Loading,
-                      setConfirmBtn4,
-                      "Sur la liste d'attente"
-                    )
-                  }
-                  disabled={confirmBtn4 ? true : false}
-                  color="warning w-50"
+                  <input
+                    hidden
+                    type="email"
+                    value="israelmink98@gmail.com"
+                    name="user_email"
+                  />
+
+                  <textarea
+                    hidden
+                    value="Bonne nouvelle vous etes admis"
+                    name="message"
+                  />
+                  <Button
+                    type="submit"
+                    onClick={() =>
+                      changeUserState(setBtn2Loading, setConfirmBtn2, "Admis")
+                    }
+                    disabled={confirmBtn2 ? true : false}
+                    className=""
+                    color="success w-75"
+                  >
+                    {btn2Loading ? <Spinner /> : "Confirmer l'admission"}
+                  </Button>
+                </form>
+              </Col>
+              <Col xs={12} className="text-center d-flex mb-3">
+                <form
+                  style={{ flex: 1 }}
+                  className="contact-form"
+                  onSubmit={sendEmail}
                 >
-                  {btn4Loading ? <Spinner /> : "Mettre sur la liste d'attente"}
-                </Button>
+                  <input type="hidden" name="contact_number" />
+
+                  <input
+                    hidden
+                    value={user.name}
+                    type="text"
+                    name="user_name"
+                  />
+
+                  <input
+                    hidden
+                    type="email"
+                    value="israelmink98@gmail.com"
+                    name="user_email"
+                  />
+
+                  <textarea
+                    hidden
+                    value="Desoler votre candidature a ete refuser"
+                    name="message"
+                  />
+                  <Button
+                    type="submit"
+                    onClick={() =>
+                      changeUserState(setBtn3Loading, setConfirmBtn3, "Recale")
+                    }
+                    disabled={confirmBtn3 ? true : false}
+                    color="danger w-75"
+                  >
+                    {btn3Loading ? <Spinner /> : "Recaler"}
+                  </Button>
+                </form>
+                <form
+                  style={{ flex: 1 }}
+                  className="contact-form"
+                  onSubmit={sendEmail}
+                >
+                  <input type="hidden" name="contact_number" />
+
+                  <input
+                    hidden
+                    value={user.name}
+                    type="text"
+                    name="user_name"
+                  />
+
+                  <input
+                    hidden
+                    type="email"
+                    value="israelmink98@gmail.com"
+                    name="user_email"
+                  />
+
+                  <textarea
+                    hidden
+                    value="Vous avez ete mise sur la liste d'attente"
+                    name="message"
+                  />
+
+                  <Button
+                    type="submit"
+                    onClick={() =>
+                      changeUserState(
+                        setBtn4Loading,
+                        setConfirmBtn4,
+                        "Sur la liste d'attente"
+                      )
+                    }
+                    disabled={confirmBtn4 ? true : false}
+                    color="warning w-75"
+                  >
+                    {btn4Loading ? (
+                      <Spinner />
+                    ) : (
+                      "Mettre sur la liste d'attente"
+                    )}
+                  </Button>
+                </form>
               </Col>
             </Row>
           </Card>

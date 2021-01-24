@@ -6,6 +6,7 @@ import ViewAdmission from "./views/Pages/users/view_admission";
 // import { renderRoutes } from 'react-router-config';
 import "./App.scss";
 import Admission from "./views/Pages/users/admission_form";
+import ContacUs from "./components/emailTest";
 
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">
@@ -33,6 +34,12 @@ class App extends Component {
               path="/profile"
               name="Profile"
               render={(props) => <UserProfile {...props} />}
+            />
+            <Route
+              exact
+              path="/emailtest"
+              name="Profile"
+              render={(props) => <ContacUs {...props} />}
             />
             <Route
               exact

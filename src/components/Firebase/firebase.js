@@ -83,10 +83,11 @@ class Firebase {
   //writeUserData
   writeUserData = (userID, data) => {
     this.database.ref("users/" + userID).set(data);
+    this.database.ref(`users/${userID}/id`).set(`${userID}`);
   };
 
   writeSubmissionData = (userID, data) => {
-    this.database.ref("userSubmission/" + userID).set(data);
+    this.database.ref("userSubmission/" + userID).set({ ...data, id: userID });
     this.database.ref(`users/${userID}/status`).set("En cours");
   };
 

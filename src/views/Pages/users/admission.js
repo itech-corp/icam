@@ -10,8 +10,19 @@ const Typography = () => {
   const firebase = useContext(FirebaseContext);
   const getCurrentUserID = () => {};
   useEffect(() => {
-    //new Promise(firebase.getCurrentUser()).then((usr) => {});
-    getCurrentUserID();
+    const promise = new Promise((res, rej) => {
+      const usr = firebase.getCurrentUser();
+      if (usr) {
+        res((usr) => usr);
+      } else {
+        rej("rejete");
+      }
+    });
+    promise
+      .then((userId) => {
+        console.log(userId);
+      })
+      .catch((msg) => console.log(msg));
   }, [user]);
 
   return (

@@ -8,6 +8,8 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import Firebase, { FirebaseContext } from "./components/Firebase";
+import { init } from "emailjs-com";
+init("user_fSMMBYI9bN2LoYh9qz3G6");
 /*import * as admin from "firebase-admin";
 const nodemailer = require("nodemailer");
 

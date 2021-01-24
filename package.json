@@ -33,6 +33,7 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.47.0",
     "core-js": "^3.1.4",
+    "emailjs-com": "^2.6.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "firebase": "^8.2.2",

@@ -52,8 +52,7 @@ const Users = () => {
     firebase.getAllUsers().then((snapshot) => {
       setUsers(Object.entries(snapshot.val()));
       Object.entries(snapshot.val()).map((usr) => {
-        if (usr[1].status === "En cours de traitement")
-          datableUser.push(usr[1]);
+        if (usr[1].status === "En cours") datableUser.push(usr[1]);
       });
       setDatable(datableUser);
     });
