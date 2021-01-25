@@ -4,29 +4,25 @@ import { Button } from "reactstrap";
 import { FirebaseContext } from "../../../components/Firebase";
 const Typography = () => {
   const useLink = `/submit/`;
-  const userlink = `/my_admission/ViymPvruPBf2UAw3HGqCGtkfRuC3`;
-  const [user, setUser] = useState("");
+
+  const [userLink, setUserLink] = useState("");
 
   const firebase = useContext(FirebaseContext);
-  const getCurrentUserID = () => {};
-  useEffect(() => {
-    const promise = new Promise((res, rej) => {
-      const usr = firebase.getCurrentUser();
-      if (usr) {
-        res((usr) => usr);
-      } else {
-        rej("rejete");
-      }
-    });
-    promise
-      .then((userId) => {
-        console.log(userId);
-      })
-      .catch((msg) => console.log(msg));
-  }, [user]);
-
+  const getCurrentUserID = () => {
+    const usr = firebase.getCurrentUser();
+    if (usr) console.log(usr.uid);
+  };
+  useEffect(() => {}, []);
+  firebase.isLoggedIn().onAuthStateChanged(function (usr) {
+    if (usr) {
+      setUserLink(`/my_admission/${usr.uid}`);
+    } else {
+      // No user is signed in.
+    }
+  });
   return (
     <div>
+      {getCurrentUserID()}
       <p className="text-center">
         <Link to={useLink}>
           <Button
@@ -37,7 +33,7 @@ const Typography = () => {
             <span>Faire une demande d'admission</span>
           </Button>
         </Link>
-        <Link to={userlink}>
+        <Link to={userLink}>
           <Button
             style={{ backgroundColor: "#bcc0c4", color: "white" }}
             size="lg"

@@ -484,7 +484,8 @@ const User = (props) => {
                   <input
                     style={{ display: "hidden" }}
                     type="hidden"
-                    name="contact_number"
+                    name="from_name"
+                    value="Inscription approuvee"
                   />
                   <input
                     hidden
@@ -495,7 +496,7 @@ const User = (props) => {
                   <input
                     hidden
                     type="email"
-                    value="israelmink98@gmail.com"
+                    value={user.email}
                     name="user_email"
                   />
                   <textarea
@@ -521,7 +522,11 @@ const User = (props) => {
                   className="contact-form"
                   onSubmit={sendEmail}
                 >
-                  <input type="hidden" name="contact_number" />
+                  <input
+                    type="hidden"
+                    name="from_name"
+                    value="Admission Approuvee"
+                  />
                   <input
                     hidden
                     value={user.name}
@@ -532,7 +537,7 @@ const User = (props) => {
                   <input
                     hidden
                     type="email"
-                    value="israelmink98@gmail.com"
+                    value={user.email}
                     name="user_email"
                   />
 
@@ -572,7 +577,7 @@ const User = (props) => {
                   <input
                     hidden
                     type="email"
-                    value="israelmink98@gmail.com"
+                    value={user.email}
                     name="user_email"
                   />
 
@@ -609,7 +614,7 @@ const User = (props) => {
                   <input
                     hidden
                     type="email"
-                    value="israelmink98@gmail.com"
+                    value={user.email}
                     name="user_email"
                   />
 

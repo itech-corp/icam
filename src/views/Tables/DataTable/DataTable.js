@@ -71,13 +71,13 @@ class DataTable extends Component {
               <TableHeaderColumn isKey dataField="email">
                 Email
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="pourcentageBac" dataSort>
+              <TableHeaderColumn dataField="pourcentage" dataSort>
                 Pourcentage obtenu au BAC
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="nomEcole" dataSort>
+              <TableHeaderColumn dataField="etablissement" dataSort>
                 Nom de l'ecole
               </TableHeaderColumn>
-              <TableHeaderColumn dataField="section" dataSort>
+              <TableHeaderColumn dataField="option" dataSort>
                 Section ou filiere d'etude
               </TableHeaderColumn>
               <TableHeaderColumn

@@ -88,6 +88,7 @@ class Firebase {
 
   writeSubmissionData = (userID, data) => {
     this.database.ref("userSubmission/" + userID).set({ ...data, id: userID });
+    this.database.ref(`users/${userID}`).update(data.diplomeEtat);
     this.database.ref(`users/${userID}/status`).set("En cours");
   };
 
@@ -97,6 +98,7 @@ class Firebase {
 
   //fetchCurrentUser
   getCurrentUser = () => this.auth.currentUser;
+  isLoggedIn = () => this.auth;
 
   getAllUsers = () => this.database.ref("users/").once("value");
 

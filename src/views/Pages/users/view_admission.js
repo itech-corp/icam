@@ -100,6 +100,8 @@ const User = (props) => {
   const [confirmBtn3, setConfirmBtn3] = useState(false);
   const [confirmBtn4, setConfirmBtn4] = useState(false);
 
+  const userLink = `/submit/${props.match.params.id}`;
+
   const [recu, setRecu] = useState("https://via.placeholder.com/400x300");
   const [passport, setPassport] = useState(
     "https://via.placeholder.com/400x300"
@@ -488,7 +490,7 @@ const User = (props) => {
             </CardBody>
             <Row>
               <Col className="text-center mb-4">
-                <Link to="/submit/ViymPvruPBf2UAw3HGqCGtkfRuC3">
+                <Link to={userLink}>
                   <Button
                     disabled={confirmBtn1 ? true : false}
                     className=" w-25 mr-4"
