@@ -64,6 +64,7 @@ const Colors = React.lazy(() => import("./views/Theme/Colors"));
 const Typography = React.lazy(() => import("./views/Theme/Typography"));
 const Widgets = React.lazy(() => import("./views/Widgets/Widgets"));
 const Users = React.lazy(() => import("./views/Users/Users"));
+const AddAdmin = React.lazy(() => import("./views/Users/adminList"));
 const User = React.lazy(() => import("./views/Users/User"));
 const UserAdmis = React.lazy(() => import("./views/Users/User_admis"));
 const UserNew = React.lazy(() => import("./views/Users/User_new"));
@@ -214,6 +215,12 @@ const routes = [
     exact: true,
     name: "Liste de tous les candidats",
     component: Users,
+  },
+  {
+    path: "/add_admin",
+    exact: true,
+    name: "Liste utilisateur",
+    component: AddAdmin,
   },
   { path: "/users/:id", exact: true, name: "User Details", component: User },
 ];

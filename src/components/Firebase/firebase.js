@@ -62,6 +62,7 @@ const data = {
   autreInfo: "",
 
   status: "",
+  position: "",
 };
 
 class Firebase {

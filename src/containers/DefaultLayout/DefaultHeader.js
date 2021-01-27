@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Nav, NavItem } from "reactstrap";
 import PropTypes from "prop-types";
 
@@ -32,6 +32,18 @@ class DefaultHeader extends Component {
           minimized={{ src: sygnet, width: 30, height: 30, alt: "ICAM Logo" }}
         />
         <AppSidebarToggler className="d-md-down-none" display="lg" />
+        <Link to="/add_admin">
+          <Button className="bg-info mr-2">
+            <i className="icon- "></i> Nommer un administrateur
+          </Button>
+        </Link>
+
+        <Button className="bg-warning mr-2">
+          <i className="icon- "></i> Faire un backup
+        </Button>
+        <Button className="bg-danger mr-2">
+          <i className="icon- "></i> Terminer la session de recrutement
+        </Button>
 
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
